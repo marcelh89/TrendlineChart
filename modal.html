@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<title>Line Chart</title>
+<script src="Chart.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+
+var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+var lineChartData = {
+	labels : ["January","February","March","April","May","June","July"],
+	datasets : [
+		{
+			label: "My First dataset",
+			fillColor : "rgba(220,220,220,0.2)",
+			strokeColor : "rgba(220,220,220,1)",
+			pointColor : "rgba(220,220,220,1)",
+			pointStrokeColor : "#fff",
+			pointHighlightFill : "#fff",
+			pointHighlightStroke : "rgba(220,220,220,1)",
+			data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+		},
+		{
+			label: "My Second dataset",
+			fillColor : "rgba(151,187,205,0.2)",
+			strokeColor : "rgba(151,187,205,1)",
+			pointColor : "rgba(151,187,205,1)",
+			pointStrokeColor : "#fff",
+			pointHighlightFill : "#fff",
+			pointHighlightStroke : "rgba(151,187,205,1)",
+			data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+		}
+	]
+
+};
+
+	function showStatistics(){
+		var canvasElement =  document.createElement("canvas");
+		canvasElement.id = "canvas";
+		
+		$("#myModal .modal-body").append(canvasElement);
+
+		var ctx = canvasElement.getContext("2d");
+		new Chart(ctx).Line(lineChartData);
+
+		
+		$("#myModal").modal('show');
+	
+	};
+
+
+</script>
+
+
+</head>
+<body>
+
+
+	<button onclick="showStatistics();">Statistik</button>
+
+
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Confirmation</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
