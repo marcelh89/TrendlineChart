@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+	var queue = function(funcs, scope) {
+	    (function next() {
+	          if(funcs.length > 0) {
+	              funcs.shift().apply(scope || {}, [next].concat(Array.prototype.slice.call(arguments, 0)));
+	          }
+	    })();
+	};
+
+
+var obj = {
+	    value: null
+	};
+
+	queue([
+	    function(callback) {
+	    	console.log("1st before");
+	        var self = this;
+	        setTimeout(function() {
+		        console.log("1st timeout before");
+	            self.value = 10;
+	            callback(30);
+		        console.log("1st timeout after");
+	            
+	        }, 200);
+	        console.log("1st after");
+	    },
+	    function(callback, add) {
+	    	console.log("2nd");
+	        console.log(this.value + add);
+	        callback();
+	        console.log("2nd");
+	    },
+	    function() {
+		    console.log("3rd");
+	        console.log(obj.value);
+	        console.log("3rd");
+	    }
+	], obj);
+
+</script>
+
+</body>
+</html>

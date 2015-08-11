@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+	var test = ["2015-06-05 01:00:10.0", "2015-06-08 01:00:54.0", "2015-06-06 01:00:11.0", "2015-06-04 01:00:11.0", "2015-06-03 01:00:09.0"];
+
+	test.sort(sortByDate);
+	console.log(test);
+
+	function sortByDate(a, b) {
+		var dateA = new Date(a);
+		var dateB = new Date(b);
+		return dateA > dateB ? 1 : -1;
+	};
+	
+
+
+</script>
+
+</body>
+</html>
